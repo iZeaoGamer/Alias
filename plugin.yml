@@ -1,7 +1,7 @@
-name: Alias
-version: 2.0
-api: [2.0.0]
-author: ZacHack
+name: VMAlias
+version: 2.0.1
+api: [3.0.0-ALPHA10]
+author: VMPE Development Team
 description: Allows users to view all the usernames one user has used
 main: Alias\MainClass
 
@@ -9,41 +9,41 @@ commands:
   alias:
     description: "Allows users to view all the usernames one user has used"
     usage: "/alias <username>"
-    permission: "alias.command.alias"
+    permission: "alias.alias"
   setalias:
     description: "Change Alias's settings"
     usage: "/setalias <cid/ip>"
-    permission: "alias.command.setalias"
+    permission: "alias.setalias"
   aliasip:
     description: "Uses IP"
     usage: "/aliasip <username>"
-    permission: "alias.command.aliasip"
+    permission: "alias.aliasip"
   aliascid:
     description: "Uses Client ID"
     usage: "/aliascid <username>"
-    permission: "alias.command.aliascid"
+    permission: "alias.aliascid"
   checkalias:
     description: "Check what Alias is set to"
     usage: "/checkalias"
-    permission: "alias.commmand.checkalias"
+    permission: "alias.checkalias"
 
 permissions:
     alias:
         default: op
         description: "Alias commands"
         children:
-            alias.command.alias:
+            alias.alias:
                 default: op
                 description: "Allows users to view all the usernames one user has used"
-            alias.command.setalias:
+            alias.setalias:
                 default: op
                 description: "Change settings for Alias"
-            alias.command.aliasip:
+            alias.aliasip:
                 default: op
                 description: "Uses IP"
-            alias.command.aliascid:
+            alias.aliascid:
                 default: op
                 description: "Uses Client ID"
-            alias.command.checkalias:
+            alias.checkalias:
                 default: op
                 description: "Checks what Alias is set to"
