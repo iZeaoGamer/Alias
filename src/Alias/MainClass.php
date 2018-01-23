@@ -89,11 +89,11 @@ class MainClass extends PluginBase implements Listener{
 			$ipfile->save();
 		}
 	}
-	public function onCommand(CommandSender $sender, Command $command, $label, array $args){
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
 		switch($command->getName()){
 			case "alias":
 				if(!isset($args[0])){
-					$sender->sendMessage(TextFormat::YELLOW."Usage: ".$command->getUsage()."");
+					$sender->sendMessage(TextFormat::YELLOW."§aPlease use: §b".$command->getUsage()."");
 					return true;
 				}
 				$config = new Config($this->getDataFolder()."config.yml", CONFIG::YAML);
@@ -106,12 +106,12 @@ class MainClass extends PluginBase implements Listener{
 						$file = new Config($this->getDataFolder()."players/cid/".$cid.".txt");
 						$names = $file->getAll(true);
 						$names = implode(', ', $names);
-						$sender->sendMessage(TextFormat::BLUE."[Alias] Showing alias of ".$name."...");
-						$sender->sendMessage(TextFormat::GREEN."[Alias] ".$names."");
+						$sender->sendMessage(TextFormat::BLUE."§7[§5Alias§7] §dShowing CIDS of§a ".$name."...");
+						$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7] §b".$names."");
 						return true;
 					}else{
 						if(!is_file($this->getDataFolder()."players/lastcid/".$name[0]."/".$name.".yml")){
-							$sender->sendMessage(TextFormat::YELLOW."[Alias] Error: Player does not have any client ID records!");
+							$sender->sendMessage(TextFormat::YELLOW."§7[§5Alias§7] §cError: §2Player does not have any client ID records!");
 							return true;
 						}else{
 							$lastcid = new Config($this->getDataFolder()."players/lastcid/".$name[0]."/".$name.".yml");
@@ -119,12 +119,12 @@ class MainClass extends PluginBase implements Listener{
 							$file = new Config($this->getDataFolder()."players/cid/".$cid.".txt");
 							$names = $file->getAll(true);
 							if($names == null){
-								$sender->sendMessage(TextFormat::YELLOW."[Alias] Error: Player does not have any client ID records!");
+								$sender->sendMessage(TextFormat::YELLOW."§7[§5Alias§7] §cError: §2Player does not have any client ID records!");
 								return true;
 							}else{
 								$names = implode(', ', $names);
-								$sender->sendMessage(TextFormat::BLUE."[Alias] Showing alias of ".$name."...");
-								$sender->sendMessage(TextFormat::GREEN."[Alias] ".$names."");
+								$sender->sendMessage(TextFormat::BLUE."§7[§5Alias§7] §dShowing CIDS of §a".$name."...");
+								$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7]§b ".$names."");
 								return true;
 							}
 						}
@@ -150,24 +150,24 @@ class MainClass extends PluginBase implements Listener{
 							$file = new Config($this->getDataFolder()."players/ip/".$ip[0]."/".$ip.".txt");
 							$names = $file->getAll(true);
 							if($names == null){
-								$sender->sendMessage(TextFormat::YELLOW."[Alias] Error: Player does not have any IP records!");
+								$sender->sendMessage(TextFormat::YELLOW."§7[§5Alias§7] §cError: Player does not have any IP records!");
 								return true;
 							}else{
 							$names = implode(', ', $names);
-							$sender->sendMessage(TextFormat::GREEN."[Alias] Showing alias of ".$name."...");
-							$sender->sendMessage(TextFormat::BLUE."[Alias] ".$names."");
+							$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7] §dShowing IPS of§b ".$name."...");
+							$sender->sendMessage(TextFormat::BLUE."§7[§5Alias§7]§a ".$names."");
 							return true;
 							}
 						}
 					}
 				}else{
-					$sender->sendMessage(TextFormat::YELLOW."[Alias] Error! Please make sure your config is set properly!");
+					$sender->sendMessage(TextFormat::YELLOW."§7[§5Alias§7] §cError! Please make sure your config is set up properly!");
 					return true;
 				}
 				return true;
 			case "setalias":
 				if(!isset($args[0])){
-					$sender->sendMessage(TextFormat::YELLOW."Usage: ".$command->getUsage()."");
+					$sender->sendMessage(TextFormat::YELLOW."§aPlease use:§b ".$command->getUsage()."");
 					return true;
 				}
 				$args[0] = strtoupper($args[0]);
@@ -176,7 +176,7 @@ class MainClass extends PluginBase implements Listener{
 				$config = new Config($this->getDataFolder()."config.yml", CONFIG::YAML, array(
 				"CID/IP" => "".$args[0]."",
 				));
-				$sender->sendMessage(TextFormat::GREEN."[Alias] You have changed the setting to use ".$args[0]."");
+				$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7] §6You have changed the setting to use ".$args[0]."");
 				return true;
 			case "aliasip":
 				if(!isset($args[0])){
@@ -190,12 +190,12 @@ class MainClass extends PluginBase implements Listener{
 					$file = new Config($this->getDataFolder()."players/ip/".$ip[0]."/".$ip.".txt");
 					$names = $file->getAll(true);
 					$names = implode(', ', $names);
-					$sender->sendMessage(TextFormat::BLUE."[Alias] Showing alias of ".$name."...");
-					$sender->sendMessage(TextFormat::GREEN."[Alias] ".$names."");
+					$sender->sendMessage(TextFormat::BLUE."§7[§5Alias§7] §dShowing IPS of§a ".$name."...");
+					$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7]§b ".$names."");
 					return true;
 				}else{
 					if(!is_file($this->getDataFolder()."players/lastip/".$name[0]."/".$name.".yml")){
-						$sender->sendMessage(TextFormat::YELLOW."[Alias] Error: Player does not have any IP records!");
+						$sender->sendMessage(TextFormat::YELLOW."§7[§5Alias§7] §cError: Player does not have any IP records!");
 						return true;
 					}else{
 						$lastip = new Config($this->getDataFolder()."players/lastip/".$name[0]."/".$name.".yml");
@@ -203,12 +203,12 @@ class MainClass extends PluginBase implements Listener{
 						$file = new Config($this->getDataFolder()."players/ip/".$ip[0]."/".$ip.".txt");
 						$names = $file->getAll(true);
 						if($names == null){
-							$sender->sendMessage(TextFormat::YELLOW."[Alias] Error: Player does not have any IP records!");
+							$sender->sendMessage(TextFormat::YELLOW."§7[§5Alias§7] §cError: Player does not have any IP records!");
 							return true;
 						}else{
 						$names = implode(', ', $names);
-						$sender->sendMessage(TextFormat::GREEN."[Alias] Showing alias of ".$name."...");
-						$sender->sendMessage(TextFormat::BLUE."[Alias] ".$names."");
+						$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7] §dShowing IPS of§b ".$name."...");
+						$sender->sendMessage(TextFormat::BLUE."§7[§5Alias§7]§a ".$names."");
 						return true;
 						}
 					}
@@ -216,7 +216,7 @@ class MainClass extends PluginBase implements Listener{
 				return true;
 			case "aliascid":
 				if(!isset($args[0])){
-					$sender->sendMessage(TextFormat::YELLOW."Usage: ".$command0>getUsage()."");
+					$sender->sendMessage(TextFormat::YELLOW."§aPlease use:§b ".$command0>getUsage()."");
 					return true;
 				}
 				$name = strtolower($args[0]);
@@ -226,12 +226,12 @@ class MainClass extends PluginBase implements Listener{
 					$file = new Config($this->getDataFolder()."players/cid/".$cid.".txt");
 					$names = $file->getAll(true);
 					$names = implode(', ', $names);
-					$sender->sendMessage(TextFormat::BLUE."[Alias] Showing alias of ".$name."...");
-					$sender->sendMessage(TextFormat::GREEN."[Alias] ".$names."");
+					$sender->sendMessage(TextFormat::BLUE."§7[§5Alias§7] §dShowing CIDS of§a ".$name."...");
+					$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7]§b ".$names."");
 					return true;
 				}else{
 					if(!is_file($this->getDataFolder()."players/lastcid/".$name[0]."/".$name.".yml")){
-						$sender->sendMessage(TextFormat::YELLOW."[Alias] Error: Player does not have any client ID records!");
+						$sender->sendMessage(TextFormat::YELLOW."§7[§5Alias§7] §cError: Player does not have any client ID records!");
 						return true;
 					}else{
 						$lastcid = new Config($this->getDataFolder()."players/lastcid/".$name[0]."/".$name.".yml");
@@ -239,12 +239,12 @@ class MainClass extends PluginBase implements Listener{
 						$file = new Config($this->getDataFolder()."players/cid/".$cid.".txt");
 						$names = $file->getAll(true);
 						if($names == null){
-							$sender->sendMessage(TextFormat::YELLOW."[Alias] Error: Player does not have any client ID records!");
+							$sender->sendMessage(TextFormat::YELLOW."§7[§5Alias§7] §cError: Player does not have any client ID records!");
 							return true;
 						}else{
 							$names = implode(', ', $names);
-							$sender->sendMessage(TextFormat::BLUE."[Alias] Showing alias of ".$name."...");
-							$sender->sendMessage(TextFormat::GREEN."[Alias] ".$names."");
+							$sender->sendMessage(TextFormat::BLUE."§7[§5Alias§7] §dShowing CIDS of§a ".$name."...");
+							$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7]§b ".$names."");
 							return true;
 						}
 					}
@@ -253,7 +253,7 @@ class MainClass extends PluginBase implements Listener{
 			case "checkalias":
 				$config = new Config($this->getDataFolder()."config.yml");
 				$setting = $config->get("CID/IP");
-				$sender->sendMessage(TextFormat::GREEN."[Alias] Alias is set to ".$setting."");
+				$sender->sendMessage(TextFormat::GREEN."§7[§5Alias§7] §6Alias is set to §9".$setting." §6succesfully");
 				return true;
 		}
 	}
