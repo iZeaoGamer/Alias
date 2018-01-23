@@ -7,7 +7,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\Player;
-use pocketmine\Iplayer;
+use pocketmine\IPlayer;
 use pocketmine\OfflinePlayer;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
