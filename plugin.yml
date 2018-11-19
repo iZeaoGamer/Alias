@@ -1,6 +1,6 @@
 name: VMAlias
-version: 2.0.2
-api: [3.0.0-ALPHA10, 3.0.0-ALPHA11]
+version: 2.0.3
+api: [3.0.0]
 author: VMPE Development Team
 description: Allows users to view all the usernames one user has used
 main: Alias\MainClass
