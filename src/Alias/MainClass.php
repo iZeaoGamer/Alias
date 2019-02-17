@@ -180,7 +180,7 @@ class MainClass extends PluginBase implements Listener{
 				return true;
 			case "aliasip":
 				if(!isset($args[0])){
-					$sender->sendMessage(TextFormat::YELLOW."Usage: ".$command0>getUsage()."");
+					$sender->sendMessage(TextFormat::YELLOW."Usage: ".$command->getUsage()."");
 					return true;
 				}
 				$name = strtolower($args[0]);
